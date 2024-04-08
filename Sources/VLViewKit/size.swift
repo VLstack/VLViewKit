@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct VLViewSizeKey: PreferenceKey
+fileprivate struct VLViewSizeKey: PreferenceKey
 {
  static var defaultValue: CGSize = .zero
 
@@ -41,7 +41,7 @@ fileprivate struct VLViewOnSizeModifier: ViewModifier
  }
 }
 
-extension View
+public extension View
 {
  func onSizeChange(perform: @escaping (CGSize) -> Void) -> some View
  {

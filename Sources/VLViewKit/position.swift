@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct VLViewPositionKey: PreferenceKey
+fileprivate struct VLViewPositionKey: PreferenceKey
 {
  static var defaultValue: CGRect = .zero
 
@@ -41,7 +41,7 @@ fileprivate struct VLViewOnPositionModifier: ViewModifier
  }
 }
 
-extension View
+public extension View
 {
  func onPositionChange(perform: @escaping (CGRect) -> Void) -> some View
  {
