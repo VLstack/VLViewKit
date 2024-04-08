@@ -1,6 +1,6 @@
 import SwiftUI
 
-fileprivate struct VLViewSizeKey: PreferenceKey
+internal struct VLViewSizeKey: PreferenceKey
 {
  static var defaultValue: CGSize = .zero
 
@@ -11,7 +11,7 @@ fileprivate struct VLViewSizeKey: PreferenceKey
  }
 }
 
-fileprivate struct VLViewGeometrySize: View
+internal struct VLViewGeometrySize: View
 {
  var body: some View
  {
@@ -26,7 +26,7 @@ fileprivate struct VLViewGeometrySize: View
  }
 }
 
-fileprivate struct VLViewOnSizeModifier: ViewModifier
+internal struct VLViewOnSizeModifier: ViewModifier
 {
  let callback: (CGSize) -> Void
 

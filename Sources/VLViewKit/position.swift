@@ -1,6 +1,6 @@
 import SwiftUI
 
-fileprivate struct VLViewPositionKey: PreferenceKey
+internal struct VLViewPositionKey: PreferenceKey
 {
  static var defaultValue: CGRect = .zero
 
@@ -11,7 +11,7 @@ fileprivate struct VLViewPositionKey: PreferenceKey
  }
 }
 
-fileprivate struct VLViewGeometryPosition: View
+internal struct VLViewGeometryPosition: View
 {
  var body: some View
  {
@@ -26,7 +26,7 @@ fileprivate struct VLViewGeometryPosition: View
  }
 }
 
-fileprivate struct VLViewOnPositionModifier: ViewModifier
+internal struct VLViewOnPositionModifier: ViewModifier
 {
  let callback: (CGRect) -> Void
 
