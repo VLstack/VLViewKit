@@ -2,7 +2,7 @@ import SwiftUI
 
 fileprivate struct VLViewPositionKey: PreferenceKey
 {
- static var defaultValue: CGRect = .zero
+ static let defaultValue: CGRect = .zero
 
  static func reduce(value: inout CGRect, nextValue: () -> CGRect)
  {
