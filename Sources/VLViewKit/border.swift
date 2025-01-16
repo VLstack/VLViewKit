@@ -29,14 +29,15 @@ public extension View
               color: Color? = nil,
               size: CGFloat? = nil) -> some View
  {
-  if edges.isEmpty || ( size ?? 1 ) <= 0
+  self
+  .overlay
   {
-   self
-  }
-  else
-  {
-   self.overlay(VLEdgeBorder(size: size ?? 1, edges: edges)
-       .foregroundStyle(color ?? .black))
+   if let size,
+      !edges.isEmpty
+   {
+    VLEdgeBorder(size: size, edges: edges)
+    .foregroundStyle(color ?? .black)
+   }
   }
  }
 
