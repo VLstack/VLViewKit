@@ -10,7 +10,7 @@ fileprivate struct VLViewPositionKey: PreferenceKey
  }
 }
 
-fileprivate struct VLViewGeometryPosition: View
+fileprivate struct ViewPositionReader: View
 {
  var body: some View
  {
@@ -18,21 +18,20 @@ fileprivate struct VLViewGeometryPosition: View
   {
    geometry in
    Color.clear
-    .hidden()
     .preference(key: VLViewPositionKey.self, value: geometry.frame(in: .global))
 //    .preference(key: VLViewPositionKey.self, value: geometry.frame(in: .local))
   }
  }
 }
 
-fileprivate struct VLViewOnPositionModifier: ViewModifier
+fileprivate struct OnPositionChangeModifier: ViewModifier
 {
  let callback: @Sendable (CGRect) -> Void
 
  func body(content: Content) -> some View
  {
   content
-   .background(VLViewGeometryPosition())
+   .background(ViewPositionReader())
    .onPreferenceChange(VLViewPositionKey.self)
    {
     callback($0)
@@ -44,6 +43,6 @@ public extension View
 {
  func onPositionChange(perform: @escaping @Sendable (CGRect) -> Void) -> some View
  {
-  self.modifier(VLViewOnPositionModifier(callback: perform))
+  self.modifier(OnPositionChangeModifier(callback: perform))
  }
 }
