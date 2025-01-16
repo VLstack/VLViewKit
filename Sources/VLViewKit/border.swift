@@ -26,48 +26,51 @@ public extension View
 {
  @ViewBuilder
  func borders(_ edges: [ Edge ],
-              color: Color? = nil,
-              size: CGFloat? = nil) -> some View
+              color: Color = .black,
+              size: CGFloat = 1) -> some View
  {
   self
   .overlay
   {
-   if let size,
-      !edges.isEmpty
+   if !edges.isEmpty && size > 0
    {
     VLEdgeBorder(size: size, edges: edges)
-    .foregroundStyle(color ?? .black)
+    .foregroundStyle(color)
    }
   }
  }
 
  func border(_ edge: Edge,
-             color: Color? = nil,
-             size: CGFloat? = nil) -> some View
+             color: Color = .black,
+             size: CGFloat = 1) -> some View
  {
   self.borders([ edge ], color: color, size: size)
  }
  
- func borderBottom(color: Color? = nil,
-                   size: CGFloat? = nil) -> some View
+ @available(*, deprecated, message: "use .boder(.bottom, color:size:) instead")
+ func borderBottom(color: Color = .black,
+                   size: CGFloat = 1) -> some View
  {
   self.border(.bottom, color: color, size: size)
  }
 
- func borderLeading(color: Color? = nil,
-                    size: CGFloat? = nil) -> some View
+ @available(*, deprecated, message: "use .boder(.leading, color:size:) instead")
+ func borderLeading(color: Color = .black,
+                    size: CGFloat = 1) -> some View
  {
   self.border(.leading, color: color, size: size)
  }
 
- func borderTop(color: Color? = nil,
-                size: CGFloat? = nil) -> some View
+ @available(*, deprecated, message: "use .boder(.top, color:size:) instead")
+ func borderTop(color: Color = .black,
+                size: CGFloat = 1) -> some View
  {
   self.border(.top, color: color, size: size)
  }
 
- func borderTrailing(color: Color? = nil,
-                     size: CGFloat? = nil) -> some View
+ @available(*, deprecated, message: "use .boder(.trailing, color:size:) instead")
+ func borderTrailing(color: Color = .black,
+                     size: CGFloat = 1) -> some View
  {
   self.border(.trailing, color: color, size: size)
  }
