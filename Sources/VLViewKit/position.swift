@@ -6,7 +6,6 @@ fileprivate struct VLViewPositionKey: PreferenceKey
 
  static func reduce(value: inout CGRect, nextValue: () -> CGRect)
  {
-  // TODO: check with new reduce logic
   value = nextValue()
  }
 }
@@ -28,12 +27,12 @@ fileprivate struct VLViewGeometryPosition: View
 
 fileprivate struct VLViewOnPositionModifier: ViewModifier
 {
- let callback: (CGRect) -> Void
+ let callback: @Sendable (CGRect) -> Void
 
  func body(content: Content) -> some View
  {
   content
-   .overlay(VLViewGeometryPosition())
+   .background(VLViewGeometryPosition())
    .onPreferenceChange(VLViewPositionKey.self)
    {
     callback($0)
@@ -43,7 +42,7 @@ fileprivate struct VLViewOnPositionModifier: ViewModifier
 
 public extension View
 {
- func onPositionChange(perform: @escaping (CGRect) -> Void) -> some View
+ func onPositionChange(perform: @escaping @Sendable (CGRect) -> Void) -> some View
  {
   self.modifier(VLViewOnPositionModifier(callback: perform))
  }
