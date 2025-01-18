@@ -9,7 +9,6 @@ extension View
              maxHeight: isHidden ? 0 : nil)
       .opacity(isHidden ? 0 : 1)
       .disabled(isHidden)
-      .hidden()
  }
  
  /// Conditionally hides this view and optionally allows hit testing.
