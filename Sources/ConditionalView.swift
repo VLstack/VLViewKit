@@ -1,12 +1,19 @@
 import VLstackNamespace
 import SwiftUI
 
-public extension VLstack
+extension VLstack
 {
- struct ConditionalView<Content: View>: View
+ public struct ConditionalView<Content: View>: View
  {
-  public let isPresented: Bool
-  @ViewBuilder public let content: () -> Content
+  private let isPresented: Bool
+  @ViewBuilder private let content: () -> Content
+
+  public init(isPresented: Bool,
+              @ViewBuilder content: @escaping () -> Content)
+  {
+   self.isPresented = isPresented
+   self.content = content
+  }
 
   public var body: some View
   {
