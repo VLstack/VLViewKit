@@ -10,7 +10,12 @@ let package = Package(name: "VLViewKit",
                        .library(name: "VLViewKit",
                                 targets: [ "VLViewKit" ])
                       ],
+                      dependencies:
+                      [
+                       .package(url: "https://github.com/VLstack/VLstackNamespace", from: "1.1.1")
+                      ],
                       targets:
                       [
-                       .target(name: "VLViewKit")
+                       .target(name: "VLViewKit",
+                               dependencies: [ "VLstackNamespace" ])
                       ])
