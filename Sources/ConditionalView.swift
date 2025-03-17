@@ -17,9 +17,12 @@ extension VLstack
 
   public var body: some View
   {
-   if isPresented
+   Group
    {
-    content()
+    if isPresented
+    {
+     content()
+    }
    }
   }
  }
