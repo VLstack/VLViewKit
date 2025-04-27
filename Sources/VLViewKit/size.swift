@@ -24,7 +24,7 @@ fileprivate struct VLViewSizeReader: View
  }
 }
 
-fileprivate struct OnSizeChangeModifier: ViewModifier
+fileprivate struct VLViewOnSizeChangeModifier: ViewModifier
 {
  let callback: @Sendable (CGSize) -> Void
 
@@ -39,35 +39,35 @@ fileprivate struct OnSizeChangeModifier: ViewModifier
  }
 }
 
-public extension View
+extension View
 {
- func onSizeChange(perform: @escaping @Sendable (CGSize) -> Void) -> some View
+ public func onSizeChange(perform: @escaping @Sendable (CGSize) -> Void) -> some View
  {
-  self.modifier(OnSizeChangeModifier(callback: perform))
+  self.modifier(VLViewOnSizeChangeModifier(callback: perform))
  }
 
- func onSizeChange(maxHeight height: Binding<CGFloat>) -> some View
+ public func onSizeChange(maxHeight height: Binding<CGFloat>) -> some View
  {
-  self.modifier(OnSizeChangeModifier(callback: { height.wrappedValue = max(0, $0.height, height.wrappedValue) }))
+  self.modifier(VLViewOnSizeChangeModifier(callback: { height.wrappedValue = max(0, $0.height, height.wrappedValue) }))
  }
 
- func onSizeChange(height: Binding<CGFloat>) -> some View
+ public func onSizeChange(height: Binding<CGFloat>) -> some View
  {
-  self.modifier(OnSizeChangeModifier(callback: { height.wrappedValue = $0.height }))
+  self.modifier(VLViewOnSizeChangeModifier(callback: { height.wrappedValue = $0.height }))
  }
 
- func onSizeChange(maxWidth width: Binding<CGFloat>) -> some View
+ public func onSizeChange(maxWidth width: Binding<CGFloat>) -> some View
  {
-  self.modifier(OnSizeChangeModifier(callback: { width.wrappedValue = max(0, $0.width, width.wrappedValue) }))
+  self.modifier(VLViewOnSizeChangeModifier(callback: { width.wrappedValue = max(0, $0.width, width.wrappedValue) }))
  }
 
- func onSizeChange(width: Binding<CGFloat>) -> some View
+ public func onSizeChange(width: Binding<CGFloat>) -> some View
  {
-  self.modifier(OnSizeChangeModifier(callback: { width.wrappedValue = $0.width }))
+  self.modifier(VLViewOnSizeChangeModifier(callback: { width.wrappedValue = $0.width }))
  }
 
- func onSizeChange(size: Binding<CGSize>) -> some View
+ public func onSizeChange(size: Binding<CGSize>) -> some View
  {
-  self.modifier(OnSizeChangeModifier(callback: { size.wrappedValue = $0 }))
+  self.modifier(VLViewOnSizeChangeModifier(callback: { size.wrappedValue = $0 }))
  }
 }

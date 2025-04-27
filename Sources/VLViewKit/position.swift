@@ -10,7 +10,7 @@ fileprivate struct VLViewPositionKey: PreferenceKey
  }
 }
 
-fileprivate struct ViewPositionReader: View
+fileprivate struct VLViewPositionReader: View
 {
  var body: some View
  {
@@ -24,14 +24,14 @@ fileprivate struct ViewPositionReader: View
  }
 }
 
-fileprivate struct OnPositionChangeModifier: ViewModifier
+fileprivate struct VLViewOnPositionChangeModifier: ViewModifier
 {
  let callback: @Sendable (CGRect) -> Void
 
  func body(content: Content) -> some View
  {
   content
-   .background(ViewPositionReader())
+   .background(VLViewPositionReader())
    .onPreferenceChange(VLViewPositionKey.self)
    {
     callback($0)
@@ -39,10 +39,10 @@ fileprivate struct OnPositionChangeModifier: ViewModifier
  }
 }
 
-public extension View
+extension View
 {
- func onPositionChange(perform: @escaping @Sendable (CGRect) -> Void) -> some View
+ public func onPositionChange(perform: @escaping @Sendable (CGRect) -> Void) -> some View
  {
-  self.modifier(OnPositionChangeModifier(callback: perform))
+  self.modifier(VLViewOnPositionChangeModifier(callback: perform))
  }
 }
