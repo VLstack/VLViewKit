@@ -2,8 +2,8 @@ import SwiftUI
 
 fileprivate struct VLEdgeBorder: Shape
 {
- var size: CGFloat
- var edges: [ Edge ]
+ let size: CGFloat
+ let edges: [ Edge ]
 
  func path(in rect: CGRect) -> Path
  {
@@ -22,17 +22,16 @@ fileprivate struct VLEdgeBorder: Shape
  }
 }
 
-public extension View
+extension View
 {
- @ViewBuilder
- func borders(_ edges: [ Edge ],
-              color: Color = .black,
-              size: CGFloat = 1) -> some View
+ public func borders(_ edges: [ Edge ],
+                     color: Color = .black,
+                     size: CGFloat = 1) -> some View
  {
   self
   .overlay
   {
-   if !edges.isEmpty && size > 0
+   if size > 0 && !edges.isEmpty
    {
     VLEdgeBorder(size: size, edges: edges)
     .foregroundStyle(color)
@@ -40,38 +39,10 @@ public extension View
   }
  }
 
- func border(_ edge: Edge,
-             color: Color = .black,
-             size: CGFloat = 1) -> some View
- {
-  self.borders([ edge ], color: color, size: size)
- }
- 
- @available(*, deprecated, message: "use .boder(.bottom, color:size:) instead")
- func borderBottom(color: Color = .black,
-                   size: CGFloat = 1) -> some View
- {
-  self.border(.bottom, color: color, size: size)
- }
-
- @available(*, deprecated, message: "use .boder(.leading, color:size:) instead")
- func borderLeading(color: Color = .black,
+ public func border(_ edge: Edge,
+                    color: Color = .black,
                     size: CGFloat = 1) -> some View
  {
-  self.border(.leading, color: color, size: size)
- }
-
- @available(*, deprecated, message: "use .boder(.top, color:size:) instead")
- func borderTop(color: Color = .black,
-                size: CGFloat = 1) -> some View
- {
-  self.border(.top, color: color, size: size)
- }
-
- @available(*, deprecated, message: "use .boder(.trailing, color:size:) instead")
- func borderTrailing(color: Color = .black,
-                     size: CGFloat = 1) -> some View
- {
-  self.border(.trailing, color: color, size: size)
+  self.borders([ edge ], color: color, size: size)
  }
 }
