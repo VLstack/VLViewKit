@@ -12,7 +12,7 @@ let package = Package(name: "VLViewKit",
                       ],
                       dependencies:
                       [
-                       .package(url: "https://github.com/VLstack/VLstackNamespace", from: "1.1.1")
+                       .package(url: "https://github.com/VLstack/VLstackNamespace", from: "1.2.0")
                       ],
                       targets:
                       [
