@@ -39,7 +39,7 @@ extension VLstack
   static let defaultValue: VLstack.ContainerSizeData = .zero
  }
 
- internal struct ApplicationSizeDataModifier: ViewModifier
+ internal struct ContainerSizeDataModifier: ViewModifier
  {
   @Environment(\.horizontalSizeClass) private var horizontalSizeClass
   @Environment(\.verticalSizeClass) private var verticalSizeClass
@@ -67,7 +67,7 @@ extension VLstack
 
 extension EnvironmentValues
 {
- public var applicationSizeData: VLstack.ContainerSizeData
+ public var containerSizeData: VLstack.ContainerSizeData
  {
   get { self[VLstack.ContainerSizeDataEnvironmentKey.self] }
   set { self[VLstack.ContainerSizeDataEnvironmentKey.self] = newValue }
@@ -78,6 +78,6 @@ extension View
 {
  public func getContainerSizeData(in data: Binding<VLstack.ContainerSizeData>) -> some View
  {
-  self.modifier(VLstack.ApplicationSizeDataModifier(data: data))
+  self.modifier(VLstack.ContainerSizeDataModifier(data: data))
  }
 }
